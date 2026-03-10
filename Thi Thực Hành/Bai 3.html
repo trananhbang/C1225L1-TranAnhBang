@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3</title>
+</head>
+
+<body>
+
+<h2>Tính số ngày của tháng</h2>
+
+<button onclick="tinhNgay()">Nhập tháng/năm</button>
+
+<p id="ketqua"></p>
+
+<script>
+
+    function tinhNgay(){
+
+        let input = prompt("Nhập tháng/năm (MM/yyyy)");
+
+        let parts = input.split("/");
+
+        if(parts.length !== 2){
+            document.getElementById("ketqua").innerHTML = "Sai định dạng";
+            return;
+        }
+
+        let thang = parseInt(parts[0]);
+        let nam = parseInt(parts[1]);
+
+        if(thang < 1 || thang > 12){
+            document.getElementById("ketqua").innerHTML = "Tháng không hợp lệ";
+            return;
+        }
+
+        let ngay;
+
+        if(thang === 2){
+
+            if((nam % 4 === 0 && nam % 100 !== 0) || nam % 400 === 0){
+                ngay = 29;
+            }else{
+                ngay = 28;
+            }
+
+        }else if(thang === 4 || thang === 6 || thang === 9 || thang === 11){
+            ngay = 30;
+        }else{
+            ngay = 31;
+        }
+
+        document.getElementById("ketqua").innerHTML =
+            "Tháng " + thang + "/" + nam + " có " + ngay + " ngày";
+
+    }
+
+</script>
+
+</body>
+</html>
